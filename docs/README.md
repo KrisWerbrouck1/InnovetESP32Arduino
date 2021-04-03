@@ -325,3 +325,4 @@ Bron:
 <https://nl.wikipedia.org/wiki/ESP32>
 
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f0f5c858-598f-479c-b0da-169debeca8c6/deploy-status)](https://app.netlify.com/sites/innovetesp32arduino/deploys)
