@@ -1,0 +1,25 @@
+{
+  "name": "InnovetESP32Arduino",
+  "version": "0.0.0",
+  "description": "ESP32 Arduino",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "keywords": [],
+  "author": "Kris Werbrouck",
+  "license": "Creative Commons Attribution-ShareAlike 4.0 International License",
+  "dependencies": {},
+  "devDependencies": {
+    "vuepress": "^1.2.0",
+    "vuepress-plugin-zooming": "^1.1.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KrisWerbrouck1/InnovetAzure-IoT.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KrisWerbrouck1/InnovetAzure-IoT.git/issues"
+  },
+  "homepage": "https://github.com/KrisWerbrouck1/InnovetAzure-IoT.git#readme"
+}
