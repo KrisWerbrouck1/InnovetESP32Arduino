@@ -22,7 +22,7 @@ Wemos D32-Pro V2 <https://www.wemos.cc/en/latest/d32/d32_pro.html>
 Leverancier:
 <https://opencircuit.nl/Product/Wemos-D32-Pro-V2.0.0-ESP32-CH340C-16MB-Flash>
 
-![D32Pro](media/D32Pro.png)
+![D32Pro](./assets/D32Pro.png)
 
 FireBeatle ESP32 van dfrobot
 <https://wiki.dfrobot.com/FireBeetle_ESP32_IOT_Microcontroller(V3.0)__Supports_Wi-Fi_&_Bluetooth__SKU__DFR0478>
@@ -30,7 +30,7 @@ FireBeatle ESP32 van dfrobot
 Leverancier:
 <https://opencircuit.nl/Product/FireBeetle-ESP32-IoT-Microcontroller>
 
-![Fire32](media/Fire32.png)
+![Fire32](./assets/Fire32.png)
 
 De ESP32 kan zowel geprogrammeerd worden in C met arduino IDE als met micropython. In deze cursus opteren we voor arduino IDE.
 
@@ -42,11 +42,11 @@ De ESP32 is niet standaard aanwezig in arduino IDE. Toevoegen kan via:
 
 Te kiezen bord bij Wemos D32-Pro V2:
 
-![D32ProArduino](media/D32ProArduino.png)
+![D32ProArduino](./assets/D32ProArduino.png)
 
 Te kiezen bord bij FireBeatle ESP32 van dfrobot:
 
-![Fire32Arduino](media/Fire32Arduino.png)
+![Fire32Arduino](./assets/Fire32Arduino.png)
 
 ## Knipperled
 
@@ -124,7 +124,7 @@ Opdracht:
 
 Sluit volgende schakeling aan op een zelfgekozen ingang
 
-![Schakeling met drukknop](media/drukknop.png)
+![Schakeling met drukknop](./assets/drukknop.png)
 
 Voorbeeldcode
 
@@ -179,7 +179,7 @@ De data wordt digitaal verzonden van de DHT11 naar de arduino.
 
 De aansluitpinnen:
 
-![DHT11](media/DHT11.png)
+![DHT11](./assets/DHT11.png)
 
 Voorbeeldprogramma:
 
