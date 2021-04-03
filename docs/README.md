@@ -6,20 +6,12 @@ De ESP32 is net als de ESP8266 een microcontroller van ESpressif. Enkele
 kenmerken van de ESP32 zijn:
 
 -   Dual core 32-bit microprocessor
-
 -   Draadloze Wifi communicatie 802.11 b/g/n
-
 -   Bluetooth communicatie
-
--   12-bit SAR ADC (Successive approximation analog to digital
-    convertor)
-
+-   12-bit SAR ADC (Successive approximation analog to digital convertor)
 -   8 bit DAC (digital tot analog convertor)
-
 -   SPI-bus (Serial Peripheral Interface)
-
 -   I²C-bus (Inter-IC-bus) Spreek uit als I kwadraat C bus
-
 -   PWM-modules (Pulse-width modulation)
 
 Er worden door verschillende fabrikanten ontwikkelbord met de ESP32
@@ -30,7 +22,7 @@ Wemos D32-Pro V2 <https://www.wemos.cc/en/latest/d32/d32_pro.html>
 Leverancier:
 <https://opencircuit.nl/Product/Wemos-D32-Pro-V2.0.0-ESP32-CH340C-16MB-Flash>
 
-![](media/D32Pro.png)
+![D32Pro](media/D32Pro.png)
 
 FireBeatle ESP32 van dfrobot
 <https://wiki.dfrobot.com/FireBeetle_ESP32_IOT_Microcontroller(V3.0)__Supports_Wi-Fi_&_Bluetooth__SKU__DFR0478>
@@ -38,7 +30,7 @@ FireBeatle ESP32 van dfrobot
 Leverancier:
 <https://opencircuit.nl/Product/FireBeetle-ESP32-IoT-Microcontroller>
 
-![](media/Fire32.png)
+![Fire32](media/Fire32.png)
 
 De ESP32 kan zowel geprogrammeerd worden in C met arduino IDE als met micropython. In deze cursus opteren we voor arduino IDE.
 
@@ -50,11 +42,11 @@ De ESP32 is niet standaard aanwezig in arduino IDE. Toevoegen kan via:
 
 Te kiezen bord bij Wemos D32-Pro V2:
 
-![](media/D32ProArduino.png)
+![D32ProArduino](media/D32ProArduino.png)
 
 Te kiezen bord bij FireBeatle ESP32 van dfrobot:
 
-![](media/Fire32Arduino.png)
+![Fire32Arduino](media/Fire32Arduino.png)
 
 ## Knipperled
 
