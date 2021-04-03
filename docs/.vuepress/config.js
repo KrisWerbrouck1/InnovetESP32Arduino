@@ -1,6 +1,6 @@
 module.exports = {
-  title: 'InnovetAzure-IoT',
-  description: 'Azure - IoT Central',
+  title: 'Innovet ESP32 Arduino',
+  description: 'Innovet ESP32 Arduino',
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
@@ -10,7 +10,7 @@ module.exports = {
     sidebar: [
       ['/', 'Home'],
     ],
-    repo: 'https://github.com/KrisWerbrouck1/InnovetAzure-IoT.git',
+    repo: 'https://github.com/KrisWerbrouck1/InnovetESP32Arduino.git',
     docsDir: 'docs',
     docsBranch: 'master'
   },
