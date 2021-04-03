@@ -16,10 +16,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/KrisWerbrouck1/InnovetAzure-IoT.git"
+    "url": "git+https://github.com/KrisWerbrouck1/InnovetESP32Arduino.git"
   },
   "bugs": {
-    "url": "https://github.com/KrisWerbrouck1/InnovetAzure-IoT.git/issues"
+    "url": "https://github.com/KrisWerbrouck1/InnovetESP32Arduino.git/issues"
   },
-  "homepage": "https://github.com/KrisWerbrouck1/InnovetAzure-IoT.git#readme"
+  "homepage": "https://github.com/KrisWerbrouck1/InnovetESP32Arduino.git#readme"
 }
