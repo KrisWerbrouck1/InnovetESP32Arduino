@@ -180,6 +180,8 @@ De data wordt digitaal verzonden van de DHT11 naar de arduino.
 De aansluitpinnen:
 
 ![DHT11](./assets/DHT11.png)
+of
+![DHT11](./assets/DHT11V2.png)
 
 Voorbeeldprogramma:
 
