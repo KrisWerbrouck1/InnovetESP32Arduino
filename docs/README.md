@@ -188,7 +188,7 @@ Voorbeeldprogramma:
 ```cpp
 #include "DHT.h"
 //here we use 14 of ESP32 to read data
-#define DHTPIN A13
+#define DHTPIN 14
 //our sensor is DHT11 type
 #define DHTTYPE DHT11
 //create an instance of DHT sensor
