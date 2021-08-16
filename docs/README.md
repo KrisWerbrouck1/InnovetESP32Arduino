@@ -202,21 +202,16 @@ void setup()
 
 void loop() {
   //use the functions which are supplied by library.
-  float h = dht.readHumidity();
+  float hum = dht.readHumidity();
   // Read temperature as Celsius (the default)
-  float t = dht.readTemperature();
-  // Check if any reads failed and exit early (to try again).
-  if (isnan(h) || isnan(t)) {
-    Serial.println("Failed to read from DHT sensor!");
-    return;
-  }
+  float temp = dht.readTemperature();
 
   // print the result to Terminal
   Serial.print("Humidity: ");
-  Serial.print(h);
+  Serial.print(hum);
   Serial.print(" %t");
   Serial.print("Temperature: ");
-  Serial.print(t);
+  Serial.print(temp);
   Serial.println(" *C ");
   //we delay a little bit for next read
   delay(2000);
@@ -241,7 +236,7 @@ void loop(){
 }
 ```
 
-## Overzicht beschikbare wifi netwerken
+## Overzicht beschikbare wifi netwerken en de signaalsterkte
 
 ```cpp
 #include "WiFi.h"
