@@ -209,7 +209,7 @@ void loop() {
   // print the result to Terminal
   Serial.print("Humidity: ");
   Serial.print(hum);
-  Serial.print(" %t");
+  Serial.print(" \t");
   Serial.print("Temperature: ");
   Serial.print(temp);
   Serial.println(" *C ");
@@ -261,7 +261,7 @@ void loop() {
  else {
     Serial.print(n);
     Serial.println(" networks found");
-    for (int i = 0; i \< n; ++i) {
+    for (int i = 0; i < n; i++) {
       // Print SSID and RSSI for each network found
       Serial.print(i + 1);
       Serial.print(": ");
