@@ -378,7 +378,7 @@ Een overzicht van veel voorkomende statuscodes:
 * 500 Internal Server Error - server foutje
 
 
-#	Microcontroller als simpele webserver
+##	Microcontroller als simpele webserver
 
 Bron: <https://randomnerdtutorials.com/esp32-web-server-arduino-ide/>
 
@@ -571,8 +571,8 @@ Voorbeeldcode:
 #include <WiFi.h>
 
 // Replace with your network credentials
-const char* ssid = "IOT";
-const char* password = "IOT-Wifi";
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_SSID_PASSWORD";
 
 // Set web server port number to 80
 WiFiServer server(80);
@@ -704,6 +704,172 @@ void loop(){
 
 Stuur 2 leds aan via een webbrowser.
 
+## GET-request
+
+Via een GET request kan informatie meegegeven worden aan de server. 
+Een GET request ziet er als volgt uit:
+[http://www.sensor-cube.be/opleidingiot/formget.php?naam=test](http://www.sensor-cube.be/opleidingiot/formget.php?naam=test) 
+In bovenstaande voorbeeld is het argument test. Het php bestand zal antwoorden op deze request.
+
+Test onderstaande programma
+```cpp 
+/*
+  Gebaseerd op https://RandomNerdTutorials.com/esp32-http-get-open-weather-map-thingspeak-arduino/
+*/
+
+#include <WiFi.h>
+#include <HTTPClient.h>
+#include <Arduino_JSON.h>
+
+const char* ssid = "YOUR_SSID";
+const char* password = "YOUR_SSID_PASSWORD";
+
+// THE DEFAULT TIMER IS SET TO 10 SECONDS FOR TESTING PURPOSES
+// For a final application, check the API call limits per hour/minute to avoid getting blocked/banned
+unsigned long lastTime = 0;
+// Timer set to 10 minutes (600000)
+//unsigned long timerDelay = 600000;
+// Set timer to 10 seconds (10000)
+unsigned long timerDelay = 10000;
+
+String jsonBuffer;
+
+void setup() {
+  Serial.begin(115200);
+  WiFi.begin(ssid, password);
+  Serial.println("Connecting");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("");
+  Serial.print("Connected to WiFi network with IP Address: ");
+  Serial.println(WiFi.localIP());
+  Serial.println("Timer set to 10 seconds (timerDelay variable), it will take 10 seconds before publishing the first reading.");
+}
+
+void loop() {
+  // Send an HTTP GET request
+  if ((millis() - lastTime) > timerDelay) {
+    // Check WiFi connection status
+    if (WiFi.status() == WL_CONNECTED) {
+      String serverPath = "http://jsonplaceholder.typicode.com/users/1";
+      jsonBuffer = httpGETRequest(serverPath.c_str());
+      Serial.println(jsonBuffer);
+      JSONVar myObject = JSON.parse(jsonBuffer);
+      // JSON.typeof(jsonVar) can be used to get the type of the var
+      if (JSON.typeof(myObject) == "undefined") {
+        Serial.println("Parsing input failed!");
+        return;
+      }
+      Serial.print("JSON object = ");
+      Serial.println(myObject);
+      Serial.print("id: ");
+      Serial.println(myObject["id"]);
+      Serial.print("name: ");
+      Serial.println(myObject["name"]);
+      Serial.print("username: ");
+      Serial.println(myObject["username"]);
+      Serial.print("Company Name: ");
+      Serial.println(myObject["company"]["name"]);
+    }
+    else {
+      Serial.println("WiFi Disconnected");
+    }
+    lastTime = millis();
+  }
+}
+
+String httpGETRequest(const char* serverName) {
+  WiFiClient client;
+  HTTPClient http;
+
+  // Your Domain name with URL path or IP address with path
+  http.begin(client, serverName);
+
+  // Send HTTP GET request
+  int httpResponseCode = http.GET();
+
+  String payload = "{}";
+
+  if (httpResponseCode > 0) {
+    Serial.print("HTTP Response code: ");
+    Serial.println(httpResponseCode);
+    payload = http.getString();
+  }
+  else {
+    Serial.print("Error code: ");
+    Serial.println(httpResponseCode);
+  }
+  // Free resources
+  http.end();
+
+  return payload;
+}
+
+```
+
+In de voorbeeldcode komt een json notatie terug.
+
+##	JSON
+
+JSON of JavaScript Object Notation is een gestandaardiseerd gegevensformaat. JSON wordt hoofdzakelijk gebruikt voor gegevensuitwisseling tussen server en webapplicatie.
+Voorbeeld:
+```json
+[ { 
+    "Naam": "JSON",
+    "Type": "Gegevensuitwisselingsformaat",
+    "isProgrammeertaal": false,
+    "Zie ook": [ "XML", "ASN.1" ] 
+  },
+  { 
+    "Naam": "JavaScript",
+    "Type": "Programmeertaal",
+    "isProgrammeertaal": true,
+    "Jaar": 1995 
+  } 
+]
+```
+Meestal wordt de JSON-string niet mooi weergegeven. Zie onderstaande voorbeeld:
+```json
+[{"status":{"data":"JSON","json":"ok","sensordata":"succes 2-2-0"},"count":2,"output": [{"data":"3","status":"0"},{"data":"4","status":"3"}]}]
+```
+
+Met <https://www.jsonlint.com> kan de JSON-string gecontroleerd worden op correctheid en leesbaar weergegeven worden.
+```json
+[{
+	"status": {
+		"data": "JSON",
+		"json": "ok",
+		"sensordata": "succes 2-2-0"
+	},
+	"count": 2,
+	"output": [{
+		"data": "3",
+		"status": "0"
+	}, {
+		"data": "4",
+		"status": "3"
+	}]
+}]
+```
+
+Meer info over JSON is te vinden op:
+[https://programmeerplaats.nl/wat-is-json](https://programmeerplaats.nl/wat-is-json) 
+
+
+
+
+## Opdrachten
+* Geef alle info uit het voorbeeld weer met:
+```cpp 
+Serial.print("id: ");
+Serial.println(myObject["id"]);
+```
+*	Roep iedere 5 seconden via een GET request het bestand formget.php aan. Geef iedere maal een andere waarde mee. Vb: 1,2,3, … http://www.sensor-cube.be/opleidingiot/formget.php?naam=test 
+*	Verstuur om de 10 seconden een eigen dweet. Meer info kan je vinden op http://dweet.io/ De ESP8266 kan enkel gebruik maken van http, niet van https. Hou hier rekening mee. 
+* Maak een account aan op open weather en geef de weersinfo terug. Maak gebruik van volgende info
+https://randomnerdtutorials.com/esp32-http-get-open-weather-map-thingspeak-arduino/
 
 
 
