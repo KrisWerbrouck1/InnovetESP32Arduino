@@ -32,6 +32,14 @@ Leverancier:
 
 ![Fire32](./assets/Fire32.png)
 
+LILYGO TTGO T-Display ESP32 <http://www.lilygo.cn/prod_view.aspx?TypeId=50033&Id=1126>
+
+Leverancier:
+<https://www.tinytronics.nl/shop/nl/development-boards/microcontroller-boards/met-wi-fi/lilygo-ttgo-t-display-v1.1-esp32-met-1.14-inch-tft-display>
+
+![ILYGO TTGO T-Display ESP32](./assets/TTGO.png)
+
+
 De ESP32 kan zowel geprogrammeerd worden in C met arduino IDE als met micropython. In deze cursus opteren we voor arduino IDE.
 
 ## Arduino IDE
