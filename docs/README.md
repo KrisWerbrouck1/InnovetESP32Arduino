@@ -240,11 +240,11 @@ Opdrachten:
 
 ## Dual core
 
-Bron: https://randomnerdtutorials.com/esp32-dual-core-arduino-ide/ 
+Bron: <https://randomnerdtutorials.com/esp32-dual-core-arduino-ide/>
 
 In de ESP32 zijn 2 Xtensa 32 bit LX6 microcontrollers aanwezig namelijk core 0 en core 1. Standaard wordt in Arduino IDE gebruik gemaakt van core 1.
 
-In onderstaande voorbeeld wordt met de functie xPortGetCoreID() weergegeven dan de code in de setup en loop in core 1 uitgevoerd worden.
+In onderstaande voorbeeld wordt met de functie xPortGetCoreID() weergegeven dat de code in de setup en loop in core 1 uitgevoerd worden.
 
 ```cpp
 /*********
@@ -265,7 +265,7 @@ void loop() {
 ```
 ### Parallel uitvoeren van taken
 
-Arduino IDE ondersteund voor de ESP32 FreeRTOS wat een Real Time Operating systeem is. In combinatie met de 2 microcontrollers aanwezig in de ESP32 is het mogelijk 2 taken parallel uit te voeren. 
+Arduino IDE ondersteund voor de ESP32 FreeRTOS wat een Real Time Operating Systeem is. In combinatie met de 2 microcontrollers aanwezig in de ESP32 is het mogelijk 2 taken parallel uit te voeren. 
 
 Om een stuk code toe te wijzen aan een core is het nodig een taak aan te maken. Hierbij kan er ook een prioriteit toegewezen worden. De laagste prioriteit is 0.
 
@@ -290,7 +290,7 @@ xTaskCreatePinnedToCore(
       0); /* Core where the task should run */
 ```
 
-3. Aanmaak van een functie waarin de code van de taak wordt uitgevoerd. In het voorbeeld wordt de functie Task1code().
+3. Aanmaak van een functie waarin de code van de taak wordt uitgevoerd. In onderstaand voorbeeld wordt de functie Task1code() aangemaakt.
 ```cpp
 Void Task1code( void * parameter) {
   for(;;) {
@@ -300,7 +300,7 @@ Void Task1code( void * parameter) {
 }
 ```
 
-Met for(;;) wordt een oneindige lus aangemaakt wat gelijkaardig is aan een loop() functie.
+Met for wordt een oneindige lus aangemaakt wat gelijkaardig is aan een loop() functie.
 
 Tijdens het uitvoeren is het ook mogelijk een taak te verwijderen met de vTaskDelete() functie. Voorbeeld:
 ```cpp
@@ -383,6 +383,77 @@ void loop() {
 }
 ```
 
+## Info weergeven op TFT display LilyGO ontwikkelbord
+
+Het LilyGO ontwikkelbord beschikt over een 1,14 inch TFT display waarop info kan weegegeven worden.
+
+![LILYGO TTGO T-Display ESP32](./assets/TTGO.png)
+
+Om info weer te geven op het display moet de bibliotheek TFT_eSPI toegevoegd worden.
+
+![LILYGO TTGO T-Display ESP32](./assets/TFT_eSPI.png)
+
+Pas vervolgens de code aan in het bestand User_Setup_Select.h wat te vinden is in de volgende map: Arduino\libraries\TFT_eSPI.
+
+Plaats den regel #include <User_Setup.h> in commentaar (toevoegen //) en plaats de regel #include <User_Setups/Setup25_TTGO_T_Display.h> niet meer in commentaar (verwijderen //).
+Vergeet niet de aanpassingen te bewaren.
+
+Een voorbeeld om tekst weer te geven kan gevonden worden onder TFT_Print_Test.
+
+![TFT_Print_Test](./assets/TFT_Print_Test.png)
+
+```cpp
+#include <TFT_eSPI.h> // Graphics and font library for ST7735 driver chip
+#include <SPI.h>
+
+TFT_eSPI tft = TFT_eSPI();  // Invoke library, pins defined in User_Setup.h
+
+#define TFT_GREY 0x5AEB // New colour
+
+void setup(void) {
+  tft.init();
+  tft.setRotation(1);
+}
+
+void loop() {
+  
+  // Fill screen with grey so we can see the effect of printing with and without 
+  // a background colour defined
+  tft.fillScreen(TFT_GREY);
+  
+  // Set "cursor" at top left corner of display (0,0) and select font 2
+  // (cursor will move to next line automatically during printing with 'tft.println'
+  //  or stay on the line is there is room for the text with tft.print)
+  tft.setCursor(0, 0, 2);
+  // Set the font colour to be white with a black background, set text size multiplier to 1
+  tft.setTextColor(TFT_WHITE,TFT_BLACK);  tft.setTextSize(1);
+  // We can now plot text on screen using the "print" class
+  tft.println("Hello World!");
+  
+  // Set the font colour to be yellow with no background, set to font 7
+  tft.setTextColor(TFT_YELLOW); tft.setTextFont(2);
+  tft.println(1234.56);
+  
+  // Set the font colour to be red with black background, set to font 4
+  tft.setTextColor(TFT_RED,TFT_BLACK);    tft.setTextFont(4);
+  tft.println((long)3735928559, HEX); // Should print DEADBEEF
+
+  // Set the font colour to be green with black background, set to font 2
+  tft.setTextColor(TFT_GREEN,TFT_BLACK);
+  tft.setTextFont(2);
+  tft.println("Groop");
+
+  // Test some print formatting functions
+  float fnumber = 123.45;
+   // Set the font colour to be blue with no background, set to font 2
+  tft.setTextColor(TFT_BLUE);    tft.setTextFont(2);
+  tft.print("Float = "); tft.println(fnumber);           // Print floating point number
+  tft.print("Binary = "); tft.println((int)fnumber, BIN); // Print as integer value in binary
+  tft.print("Hexadecimal = "); tft.println((int)fnumber, HEX); // Print as integer number in Hexadecimal
+
+  while(1) yield(); // We must yield() to stop a watchdog timeout.
+}
+```
 
 ## MAC-adres
 
