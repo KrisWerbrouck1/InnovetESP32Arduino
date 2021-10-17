@@ -56,7 +56,7 @@ Te kiezen bord bij FireBeatle ESP32 van dfrobot:
 
 ![Fire32Arduino](./assets/Fire32Arduino.png)
 
-Te kiezen bord bij de TTGO T-Display ESP32
+Te kiezen bord bij de TTGO T-Display ESP32:
 
 ![LILYGO TTGO T-Display ESP32](./assets/TTGOArduino.png)
 
@@ -116,7 +116,7 @@ Opdrachten:
 
 ## Weergave seriële monitor
 
-Voorbeeldprogramma
+Voorbeeldprogramma:
 
 ```cpp
 void setup() {
@@ -184,6 +184,11 @@ void loop() {
   delay(100);
 }
 ```
+Opdrachten:
+- Sluit een potentiometer aan op een analoge ingang en geef de waarde weer in de seriële monitor.
+- Sluit een potentiometer aan op een analoge ingang en geef de spanning weer in de serïele monitor.
+- Sluit een potentiometer aan op een analoge ingang en laat een led oplichten wanneer de ingangsspanning boven de 2 V komt.
+- Sluit 2 potentiometers aan op 2 verschillende analoge ingangen. Vergelijk de ingangsspanningen. Geef in de seriële monitor weer welke ingangsspanning de grootste is.
 
 ## DHT11 temperatuur- en luchtvochtigheidssensor
 
@@ -229,6 +234,155 @@ void loop() {
   delay(2000);
 }
 ```
+Opdrachten:
+- Geef de temperatuur en luchtvochtigheid weer in de serële monitor.
+- Bouw een ventilatiesysteem waarbij de gewenste luchtvochtigheid ingesteld wordt via een potentiometer. Wanneer de luchtvochtigheid boven de gewenste waarde komt begint een ventilator te draaien. Maak als vermogenelement gebruik van een MOSFET.
+
+## Dual core
+
+Bron: https://randomnerdtutorials.com/esp32-dual-core-arduino-ide/ 
+
+In de ESP32 zijn 2 Xtensa 32 bit LX6 microcontrollers aanwezig namelijk core 0 en core 1. Standaard wordt in Arduino IDE gebruik gemaakt van core 1.
+
+In onderstaande voorbeeld wordt met de functie xPortGetCoreID() weergegeven dan de code in de setup en loop in core 1 uitgevoerd worden.
+
+```cpp
+/*********
+  Rui Santos
+  Complete project details at https://randomnerdtutorials.com  
+*********/
+
+void setup() {
+  Serial.begin(115200);
+  Serial.print("setup() running on core ");
+  Serial.println(xPortGetCoreID());
+}
+
+void loop() {
+  Serial.print("loop() running on core ");
+  Serial.println(xPortGetCoreID());
+}
+```
+### Parallel uitvoeren van taken
+
+Arduino IDE ondersteund voor de ESP32 FreeRTOS wat een Real Time Operating systeem is. In combinatie met de 2 microcontrollers aanwezig in de ESP32 is het mogelijk 2 taken parallel uit te voeren. 
+
+Om een stuk code toe te wijzen aan een core is het nodig een taak aan te maken. Hierbij kan er ook een prioriteit toegewezen worden. De laagste prioriteit is 0.
+
+Om een taak aan te maken moeten volgende stappen doorlopen worden:
+
+1. Aanmaak van een taak. Voorbeeld Task1:
+
+```cpp
+TaskHandle_t Task1;
+```
+
+2. In de setup() wordt een taak toegewezen aan een specifieke core met de functie xTaskCreatePinnedToCore. Er zijn verschillende parameters mogelijk zoals de prioriteit en het toewijzen van de core.
+
+```cpp
+xTaskCreatePinnedToCore(
+      Task1code, /* Function to implement the task */
+      "Task1", /* Name of the task */
+      10000,  /* Stack size in words */
+      NULL,  /* Task input parameter */
+      0,  /* Priority of the task */
+      &Task1,  /* Task handle. */
+      0); /* Core where the task should run */
+```
+
+3. Aanmaak van een functie waarin de code van de taak wordt uitgevoerd. In het voorbeeld wordt de functie Task1code().
+```cpp
+Void Task1code( void * parameter) {
+  for(;;) {
+    Code for task 1 - infinite loop
+    (...)
+  }
+}
+```
+
+Met for(;;) wordt een oneindige lus aangemaakt wat gelijkaardig is aan een loop() functie.
+
+Tijdens het uitvoeren is het ook mogelijk een taak te verwijderen met de vTaskDelete() functie. Voorbeeld:
+```cpp
+vTaskDelete(Task1);
+```
+
+### voorbeeldprogramma
+
+In onderstaande voorbeeldprogramma worden met taken aangemaakt namelijk Task1 en Taks2. In beide taken loopt een knipperled.
+
+```cpp
+/*********
+  Rui Santos
+  Complete project details at https://randomnerdtutorials.com  
+*********/
+
+TaskHandle_t Task1;
+TaskHandle_t Task2;
+
+// LED pins
+const int led1 = 2;
+const int led2 = 4;
+
+void setup() {
+  Serial.begin(115200); 
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+
+  //create a task that will be executed in the Task1code() function, with priority 1 and executed on core 0
+  xTaskCreatePinnedToCore(
+                    Task1code,   /* Task function. */
+                    "Task1",     /* name of task. */
+                    10000,       /* Stack size of task */
+                    NULL,        /* parameter of the task */
+                    1,           /* priority of the task */
+                    &Task1,      /* Task handle to keep track of created task */
+                    0);          /* pin task to core 0 */                  
+  delay(500); 
+
+  //create a task that will be executed in the Task2code() function, with priority 1 and executed on core 1
+  xTaskCreatePinnedToCore(
+                    Task2code,   /* Task function. */
+                    "Task2",     /* name of task. */
+                    10000,       /* Stack size of task */
+                    NULL,        /* parameter of the task */
+                    1,           /* priority of the task */
+                    &Task2,      /* Task handle to keep track of created task */
+                    1);          /* pin task to core 1 */
+    delay(500); 
+}
+
+//Task1code: blinks an LED every 1000 ms
+void Task1code( void * pvParameters ){
+  Serial.print("Task1 running on core ");
+  Serial.println(xPortGetCoreID());
+
+  for(;;){
+    digitalWrite(led1, HIGH);
+    delay(1000);
+    digitalWrite(led1, LOW);
+    delay(1000);
+  } 
+}
+
+//Task2code: blinks an LED every 700 ms
+void Task2code( void * pvParameters ){
+  Serial.print("Task2 running on core ");
+  Serial.println(xPortGetCoreID());
+
+  for(;;){
+    digitalWrite(led2, HIGH);
+    delay(700);
+    digitalWrite(led2, LOW);
+    delay(700);
+  }
+}
+
+void loop() {
+  
+}
+```
+
 
 ## MAC-adres
 
