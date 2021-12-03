@@ -395,7 +395,7 @@ Om info weer te geven op het display moet de bibliotheek TFT_eSPI toegevoegd wor
 
 Pas vervolgens de code aan in het bestand User_Setup_Select.h wat te vinden is in de volgende map: Arduino\libraries\TFT_eSPI.
 
-Plaats den regel #include <User_Setup.h> in commentaar (toevoegen //) en plaats de regel #include <User_Setups/Setup25_TTGO_T_Display.h> niet meer in commentaar (verwijderen //).
+Plaats de regel #include <User_Setup.h> in commentaar (toevoegen //) en plaats de regel #include <User_Setups/Setup25_TTGO_T_Display.h> niet meer in commentaar (verwijderen //).
 Vergeet niet de aanpassingen te bewaren.
 
 Een voorbeeld om tekst weer te geven kan gevonden worden onder TFT_Print_Test.
@@ -553,7 +553,52 @@ void loop() {
 }
 
 ```
+# Weergave tijd
 
+De tijd kan opgehaald worden van een NTP Server. (Network Time Protocol) De communicatie verloopt normaal over poort 123 met het UDP protocol.
+
+Hiervoor moet eerst de ntpclient bibliotheek toegevoegd worden van Fabrice Weinberg.
+
+De voorbeeldcode:
+
+```cpp
+#include <NTPClient.h>
+#include <WiFi.h>
+#include <WiFiUdp.h>
+
+# define ssid "SSID"
+# define password "PASSWORD"
+
+const long utcOffsetInSeconds = 3600;
+
+char daysOfTheWeek[7][12] = {"Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"};
+
+// Define NTP Client to get time
+WiFiUDP ntpUDP;
+NTPClient timeClient(ntpUDP, "pool.ntp.org", utcOffsetInSeconds);
+
+void setup() {
+  Serial.begin(115200);
+  WiFi.begin(ssid, password);
+  while ( WiFi.status() != WL_CONNECTED ) {
+    delay ( 500 );
+    Serial.print ( "." );
+  }
+  timeClient.begin();
+}
+
+void loop() {
+  timeClient.update();
+  Serial.print(daysOfTheWeek[timeClient.getDay()]);
+  Serial.print(", ");
+  Serial.print(timeClient.getHours());
+  Serial.print(":");
+  Serial.print(timeClient.getMinutes());
+  Serial.print(":");
+  Serial.println(timeClient.getSeconds());
+  delay(1000);
+}
+```
 
 ## HTTP en HTML
 ### HTTP
