@@ -190,6 +190,52 @@ Opdrachten:
 - Sluit een potentiometer aan op een analoge ingang en laat een led oplichten wanneer de ingangsspanning boven de 2 V komt.
 - Sluit 2 potentiometers aan op 2 verschillende analoge ingangen. Vergelijk de ingangsspanningen. Geef in de seriële monitor weer welke ingangsspanning de grootste is.
 
+## PWM
+
+Bron:
+<https://randomnerdtutorials.com/esp32-pwm-arduino-ide/>
+
+Op de ESP32 zijn er 16 PWM kanalen beschikbaar. Van 0 tot en met 15.
+Voor ieder kanaal is het mogelijk de frequentie in te stellen. In onderstaande voorbeeld wordt gekozen voor een frequentie van 5 kHz.
+De resolutie van het PWM-signaal is instelbaar tussen 1 en 16 bit. In onderstaande voorbeeld wordt gekozen voor 8-bit, waardoor PWM-waardes tussen de 0 en 255 mogelijk zijn.
+Aan ieder PWM kanaal kan een pin toegewezen worden.
+
+Voorbeeldcode:
+```cpp
+// the number of the LED pin
+const int ledPin = 16;  // 16 corresponds to GPIO16
+
+// setting PWM properties
+const int freq = 5000;
+const int ledChannel = 0;
+const int resolution = 8;
+ 
+void setup(){
+  // configure LED PWM functionalitites
+  ledcSetup(ledChannel, freq, resolution);
+  
+  // attach the channel to the GPIO to be controlled
+  ledcAttachPin(ledPin, ledChannel);
+}
+ 
+void loop(){
+  // increase the LED brightness
+  for(int dutyCycle = 0; dutyCycle <= 255; dutyCycle++){   
+    // changing the LED brightness with PWM
+    ledcWrite(ledChannel, dutyCycle);
+    delay(15);
+  }
+
+  // decrease the LED brightness
+  for(int dutyCycle = 255; dutyCycle >= 0; dutyCycle--){
+    // changing the LED brightness with PWM
+    ledcWrite(ledChannel, dutyCycle);   
+    delay(15);
+  }
+}
+
+
+```
 ## DHT11 temperatuur- en luchtvochtigheidssensor
 
 De data wordt digitaal verzonden van de DHT11 naar de arduino.
