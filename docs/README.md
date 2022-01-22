@@ -195,10 +195,10 @@ Opdrachten:
 Bron:
 <https://randomnerdtutorials.com/esp32-pwm-arduino-ide/>
 
-Op de ESP32 zijn er 16 PWM kanalen beschikbaar. Van 0 tot en met 15.
-Voor ieder kanaal is het mogelijk de frequentie in te stellen. In onderstaande voorbeeld wordt gekozen voor een frequentie van 5 kHz.
-De resolutie van het PWM-signaal is instelbaar tussen 1 en 16 bit. In onderstaande voorbeeld wordt gekozen voor 8-bit, waardoor PWM-waardes tussen de 0 en 255 mogelijk zijn.
-Aan ieder PWM kanaal kan een pin toegewezen worden.
+- Op de ESP32 zijn er 16 PWM kanalen beschikbaar. Van 0 tot en met 15.
+- Voor ieder kanaal is het mogelijk de frequentie in te stellen. In onderstaande voorbeeld wordt gekozen voor een frequentie van 5 kHz.
+- De resolutie van het PWM-signaal is instelbaar tussen 1 en 16 bit. In onderstaande voorbeeld wordt gekozen voor 8-bit, waardoor PWM-waardes tussen de 0 en 255 mogelijk zijn.
+- Aan ieder PWM kanaal kan een pin toegewezen worden.
 
 Voorbeeldcode:
 ```cpp
@@ -234,8 +234,16 @@ void loop(){
   }
 }
 
-
 ```
+Opdrachten:
+- Sluit 2 leds aan. Laat eerst de lichtsterkte van de eerste led toenemen tot het maximum. Vervolgens moet de ledsterkte van de 2 de led toenemen tot het maximum. Als laatste stap moet de ledsterkte van beide leds gelijktijdig afnemen naar 0. Geef de PWM-waard van beide leds ook weer in de seriële monitor.
+- Voer via de seriële monitor een lichtsterkte in % in.
+- Geef het PWM-signaal bij verschillende waardes weer op een oscilloscoop.
+- Pas de frequentie van het PWM-signaal aan en geef het PWM-signaal weer op een oscilloscoop.
+- Regel de lichtsterkte van 1 led via een potentiometer. Geef de waarde van het signaal van de potentiometer weer in de seriële monitor.
+- Regel de lichtsterke van 2 leds met 2 potentiometers. Geef beide waardes afkomstig van de potentiometers weer in de seriële monitor.
+
+
 ## DHT11 temperatuur- en luchtvochtigheidssensor
 
 De data wordt digitaal verzonden van de DHT11 naar de arduino.
