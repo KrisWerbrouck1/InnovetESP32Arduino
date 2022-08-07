@@ -65,16 +65,17 @@ Te kiezen bord bij de TTGO T-Display ESP32:
 Voorbeeldprogramma met delay's:
 
 ```cpp
+const int ledPin =  2;                // GPIO pin led
 void setup() {
-  // initialize digital pin LED_BUILTIN as an output.
-  pinMode(LED_BUILTIN, OUTPUT);
+  
+  pinMode(ledPin, OUTPUT);     // initialize pin as an output.
 }
 
 // the loop function runs over and over again forever
 void loop() {
-  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+  digitalWrite(ledPin, HIGH);   // turn the LED on (HIGH is the voltage level)
   delay(1000);                       // wait for a second
-  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+  digitalWrite(ledPin, LOW);    // turn the LED off by making the voltage LOW
   delay(1000);                       // wait for a second
 }
 
@@ -89,11 +90,11 @@ unsigned long currentMillis = 0;       //tijd sinds opstart arduin
 boolean ledState = LOW;                // ledstatus
 
 const long interval = 1000;           // interval in milliseconden
-const int ledPin =  LED_BUILTIN;      // pin nummer van de ingebouwde led
+const int ledPin =  2;                // GPIO pin led
 
 void setup() {
   Serial.begin(115200);
-  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(ledPin, OUTPUT);
 }
 
 void loop() {
@@ -101,7 +102,7 @@ void loop() {
   if ((currentMillis - previousMillis) >= interval) //wanneer verschil tussen laatste toestandsverandering en opstarttijd groter of gelijk is aan interval
   { ledState=!ledState;
     previousMillis = currentMillis;    //update previousMillis
-    digitalWrite(LED_BUILTIN,ledState);
+    digitalWrite(ledPin,ledState);
     Serial.println(ledState);
   }
 
