@@ -712,7 +712,7 @@ void loop() {
 }
 
 ```
-# Weergave tijd
+## Weergave tijd
 
 De tijd kan opgehaald worden van een NTP Server. (Network Time Protocol) De communicatie verloopt normaal over poort 123 met het UDP protocol.
 
