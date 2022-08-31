@@ -1151,8 +1151,8 @@ Stuur 2 leds aan via een webbrowser.
 
 Via een GET request kan informatie meegegeven worden aan de server. 
 Een GET request ziet er als volgt uit:
-[http://www.sensor-cube.be/opleidingiot/formget.php?naam=test](http://www.sensor-cube.be/opleidingiot/formget.php?naam=test) 
-In bovenstaande voorbeeld is het argument test. Het php bestand zal antwoorden op deze request.
+[http://www.w3schools.com/action_page.php?fname=Robbert&lname=Clark](http://www.w3schools.com/action_page.php?fname=Robbert&lname=Clark) 
+In bovenstaande voorbeeld worden 2 argumenten meegezonden, namelijk de voornaam en de achternaam. Het php bestand zal antwoorden op deze request.
 
 Test onderstaande programma
 ```cpp 
