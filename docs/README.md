@@ -770,19 +770,21 @@ HTTP staat voor Hyper Text Transfer Protocol. HTTP is ontworpen voor communicati
 
 Als je in de adresbalk van je webbrowser een bepaalde website opvraagt, dan wordt er van de client naar de server een http request gestuurd. Er bestaan verschillende request methodes zoals GET, POST,PUT,... In de cursus wordt enkel GET en POST gebruikt.
 
-[Voorbeeld GET met php bestand](http://www.sensor-cube.be/opleidingiot/formget.php)
+[Voorbeeld GET met php bestand](https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_form_method)
 
-Via het php bestand formget.php kan je informatie doorgeven via GET. Test dit uit. 
+Indien je als voornaam "Robbert" meegeeft en als achternaam "Clark" krijg je volgende resultaat:
 
-Wanneer je het woord test meegeeft krijg je volgende URL:
+In de URL wordt als first name "Robbert" meegegeven en als achternaam "Clark":
 
-[http://www.sensor-cube.be/opleidingiot/formget.php?naam=test](http://www.sensor-cube.be/opleidingiot/formget.php?naam=test)
+[https://www.w3schools.com/action_page.php?fname=Robbert&lname=Clark](https://www.w3schools.com/action_page.php?fname=Robbert&lname=Clark)
 
 Via functietoets F12 op het toetsenbord kan meer info weergegeven worden in de browser.
 
 ![Weergave GET in browser](./assets/GET1.png)
 
-[Voorbeeld POST met php bestand](http://www.sensor-cube.be/opleidingiot/formpost.php)
+Het is ook mogelijk om POST te gebruiken. 
+
+[Voorbeeld POST met php bestand](https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_form_method_post)
 
 Via het php bestand formpost.php wordt informatie verstuurd. Test dit uit.
 
@@ -803,7 +805,7 @@ Of
 HTTP/1.0 200 OK
 Content-Type:text/html
 <html>
-<h1>Hello from ESP8266 </h1>
+<h1>Hello from ESP32 </h1>
 </html>
 ```
 Een http-response die de server naar de client stuurt, geeft informatie mee die de client kan gebruiken om de content correct weer te geven.
