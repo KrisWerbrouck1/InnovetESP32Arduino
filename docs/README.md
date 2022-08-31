@@ -999,7 +999,7 @@ client.println("</body></html>");
 
 Geef de analoge ingangsspanning weer op een webpagina. Maak gebruik van een potentiometer.
 
-### Aansturen actuatoren
+## Aansturen actuatoren
 
 Bron: <https://randomnerdtutorials.com/esp32-web-server-arduino-ide/>
 
