@@ -169,20 +169,18 @@ De ESP32 beschikt over een 12 bit ADC.
 Voorbeeldprogramma
 
 ```cpp
-int sensorPin = A6;    // select the input pin 
-int sensorValue = 0;  // variable to store the value coming from the sensor
+# define ADCPin  A0    // Analog input pin 
+int ADCValue = 0;  // variable to store the value coming from the ADC
 
-void setup() {
-  // declare the ledPin as an OUTPUT:
-  Serial.begin(115200);
+void setup() {
+  Serial.begin(115200);
 }
 
-void loop() {
-  // read the value from the sensor:
-  sensorValue = analogRead(sensorPin);
-  Serial.print("Sensorwaarde: ");
-  Serial.println (sensorValue);
-  delay(100);
+void loop() {
+  ADCValue = analogRead(ADCPin);
+  Serial.print("Analoge waarde: ");
+  Serial.println (ADCValue);
+  delay(100);
 }
 ```
 Opdrachten:
