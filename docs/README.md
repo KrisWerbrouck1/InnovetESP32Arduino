@@ -169,7 +169,7 @@ De ESP32 beschikt over een 12 bit ADC.
 Voorbeeldprogramma
 
 ```cpp
-# define ADCPin  A0    // Analog input pin 
+# define ADCPin  38    // Analog input pin 
 int ADCValue = 0;  // variable to store the value coming from the ADC
 
 void setup() {
