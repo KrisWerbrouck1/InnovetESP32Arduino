@@ -611,6 +611,7 @@ void loop() {
   while(1) yield(); // We must yield() to stop a watchdog timeout.
 }
 ```
+In volgende YouTube video is meer uitleg te vinden rond het display: <https://www.youtube.com/watch?v=WFVjsxFMbSM>
 
 ## MAC-adres
 
