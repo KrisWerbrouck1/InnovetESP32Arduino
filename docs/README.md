@@ -613,6 +613,34 @@ void loop() {
 ```
 In volgende YouTube video is meer uitleg te vinden rond het display: <https://www.youtube.com/watch?v=WFVjsxFMbSM>
 
+Een overzicht van de beschikbare kleuren met hun RGB waarde:
+
+
+TFT_BLACK       /*   0,   0,   0 */
+TFT_NAVY        /*   0,   0, 128 */
+TFT_DARKGREEN   /*   0, 128,   0 */
+TFT_DARKCYAN    /*   0, 128, 128 */
+TFT_MAROON      /* 128,   0,   0 */
+TFT_PURPLE      /* 128,   0, 128 */
+TFT_OLIVE       /* 128, 128,   0 */
+TFT_LIGHTGREY   /* 211, 211, 211 */
+TFT_DARKGREY    /* 128, 128, 128 */
+TFT_BLUE        /*   0,   0, 255 */
+TFT_GREEN       /*   0, 255,   0 */
+TFT_CYAN        /*   0, 255, 255 */
+TFT_RED         /* 255,   0,   0 */
+TFT_MAGENTA     /* 255,   0, 255 */
+TFT_YELLOW      /* 255, 255,   0 */
+TFT_WHITE       /* 255, 255, 255 */
+TFT_ORANGE      /* 255, 180,   0 */
+TFT_GREENYELLOW /* 180, 255,   0 */
+TFT_PINK        /* 255, 192, 203 */ //Lighter pink, was 0xFC9F
+TFT_BROWN       /* 150,  75,   0 */
+TFT_GOLD        /* 255, 215,   0 */
+TFT_SILVER      /* 192, 192, 192 */
+TFT_SKYBLUE     /* 135, 206, 235 */
+TFT_VIOLET      /* 180,  46, 226 */
+
 ## MAC-adres
 
 Voorbeeldcode om het mac-adres weer te geven
