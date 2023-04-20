@@ -853,7 +853,8 @@ Een overzicht van veel voorkomende statuscodes:
 
 Bron: <https://randomnerdtutorials.com/esp32-web-server-arduino-ide/>
 
-In onderstaande voorbeeld wordt de microcontroller in het netwerk geplaatst. De microcontroller doet dienst als server om een webpagina weer te geven. Vul zeker het juist SSID en paswoord van het netwerk in.
+In onderstaande voorbeeld wordt de microcontroller in het netwerk geplaatst. De microcontroller doet dienst als server om een webpagina weer te geven. Iedere 10 seconden wordt de webpagina opnieuw geladen.
+Vul zeker het juist SSID en paswoord van het netwerk in.
 
 ```cpp 
 /*********
@@ -928,6 +929,7 @@ void loop() {
             client.println("<!DOCTYPE html>");
             // Web Page Heading
             client.println("<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">");
+            client.println("<meta http-equiv=\"refresh\" content=\"10\">");
             client.println("<title>ESP32 Webpagina</title>");
             client.println("</head>");
             // Web Page body
