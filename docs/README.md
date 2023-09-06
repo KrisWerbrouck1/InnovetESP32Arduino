@@ -1330,20 +1330,53 @@ Met <https://www.jsonlint.com> kan de JSON-string gecontroleerd worden op correc
 Meer info over JSON is te vinden op:
 [https://programmeerplaats.nl/wat-is-json](https://programmeerplaats.nl/wat-is-json) 
 
-
-
-
-## Opdrachten
+### Opdrachten
 * Geef alle info uit het voorbeeld weer met:
 ```cpp 
 Serial.print("id: ");
 Serial.println(myObject["id"]);
 ```
-*	Roep iedere 5 seconden via een GET request het bestand formget.php aan. Geef iedere maal een andere waarde mee. Vb: 1,2,3, … http://www.sensor-cube.be/opleidingiot/formget.php?naam=test 
-*	Verstuur om de 10 seconden een eigen dweet. Meer info kan je vinden op http://dweet.io/ De ESP8266 kan enkel gebruik maken van http, niet van https. Hou hier rekening mee. 
+*	Verstuur om de 10 seconden een eigen dweet. Meer info kan je vinden op http://dweet.io/ 
 * Maak een account aan op open weather en geef de weersinfo terug. Maak gebruik van volgende info
 https://randomnerdtutorials.com/esp32-http-get-open-weather-map-thingspeak-arduino/
 
+## Data versturen naar Excel via DataStreamer
+
+Het is mogelijk informatie vanuit de ESP32 weer te geven in Excel. Hiervoor moet eerst Data Streamer toegevoegd worden aan Excel. 
+[Toevoegen dataStreamer](https://support.microsoft.com/nl-nl/office/schakel-de-data-streamer-invoegtoepassing-in-70052b28-3b00-41e7-8ab6-8a9f142dffeb) 
+
+### Voorbeeldcode
+
+In onderstaande voorbeeldcode worden 2 waardes doorgezonden, namelijk de inhoud van de variabelen i en j. De waarde van i neemt iedere seconde met 1 toe en de waarde van j neemt iedere seconde met 2 toe.
+
+```cpp 
+int i = 0;
+int j = 0;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  Serial.print(i); 
+  Serial.print(",");
+  Serial.print(j);
+  Serial.println();
+  i=i+1;
+  j=j+2;
+  delay(1000);
+}
+```
+
+### Onderzoeken
+
+* Hoe schuif je een cel naar rechts op.
+* Hoe zorg je dat er een nieuwe rij wordt begonnen in het rekenbladw?
+
+### Opdrachten
+
+* Geef iedere seconde de toestand van een drukknop weer in Excel.
+* Geef iedere seconde de temperatuur en luchtvochtigheid weer via een DHT11.
 
 
 Bron:
