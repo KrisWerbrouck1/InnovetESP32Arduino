@@ -121,12 +121,12 @@ Voorbeeldprogramma:
 
 ```cpp
 void setup() {
-Serial.begin(115200);
+  Serial.begin(115200);
 }
 
 void loop() {
-delay(1000);
-Serial.println("hello from ESP32");
+  Serial.println("hello from ESP32");
+  delay(1000);
 }
 ```
 
