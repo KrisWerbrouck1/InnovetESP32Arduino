@@ -147,7 +147,7 @@ Voorbeeldcode
 boolean drukknopStatus;
 
 void setup() {
- pinMode(drukknopPin, INPUT); // pin 12 als ingang plaatsen
+ pinMode(drukknopPin, INPUT); // pin 4 als ingang plaatsen
  Serial.begin(115200);
 }
 
