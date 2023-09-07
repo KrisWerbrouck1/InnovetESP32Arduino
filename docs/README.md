@@ -379,7 +379,6 @@ void loop() {
   float hum = dht.readHumidity();
   // Read temperature as Celsius (the default)
   float temp = dht.readTemperature();
-
   // print the result to Terminal
   Serial.print("Humidity: ");
   Serial.print(hum);
@@ -387,7 +386,6 @@ void loop() {
   Serial.print("Temperature: ");
   Serial.print(temp);
   Serial.println(" *C ");
-  //we delay a little bit for next read
   delay(2000);
 }
 ```
