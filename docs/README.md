@@ -1369,7 +1369,7 @@ void loop() {
 ### Onderzoeken
 
 * Hoe schuif je een cel naar rechts op.
-* Hoe zorg je dat er een nieuwe rij wordt begonnen in het rekenbladw?
+* Hoe zorg je dat er een nieuwe rij wordt begonnen in het rekenblad?
 
 ### Opdrachten
 
