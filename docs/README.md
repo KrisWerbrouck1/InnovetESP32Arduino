@@ -235,7 +235,7 @@ void loop(){
 
 ```
 Opdrachten:
-- Sluit 2 leds aan. Laat eerst de lichtsterkte van de eerste led toenemen tot het maximum. Vervolgens moet de ledsterkte van de 2 de led toenemen tot het maximum. Als laatste stap moet de ledsterkte van beide leds gelijktijdig afnemen naar 0. Geef de PWM-waard van beide leds ook weer in de seriële monitor.
+- Sluit 2 leds aan. Laat eerst de lichtsterkte van de eerste led toenemen tot het maximum. Vervolgens moet de ledsterkte van de 2 de led toenemen tot het maximum. Als laatste stap moet de ledsterkte van beide leds gelijktijdig afnemen naar 0. Geef de PWM-waarde van beide leds ook weer in de seriële monitor.
 - Voer via de seriële monitor een lichtsterkte in % in.
 - Geef het PWM-signaal bij verschillende waardes weer op een oscilloscoop.
 - Pas de frequentie van het PWM-signaal aan en geef het PWM-signaal weer op een oscilloscoop.
